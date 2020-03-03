@@ -36,7 +36,8 @@ def train():
 
     # create session
     tfconfig = tf.ConfigProto(allow_soft_placement=True)
-    tfconfig.gpu_options.allow_growth = True
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+    tfconfig.gpu_options = gpu_options
     sess = tf.Session(config=tfconfig)
 
     with sess.graph.as_default():
