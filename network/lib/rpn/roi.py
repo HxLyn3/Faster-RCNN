@@ -35,15 +35,15 @@ def proposal(rpn_cls_prob, rpn_bbox_pred, imgInfo, mode, feat_stride, anchors, n
         num: num of anchors at a pos
     """
 
-    if mode == "train":
+    if str(mode, encoding='utf-8') == "train":
         pre_topN = 12000    # number of top scoring boxes to keep before applying nms
         post_topN = 2000    # number of top scoring boxes to keep after applying nms
         threshold = 0.7     # nms threshold used on proposals
-    elif mode == "test":
+    elif str(mode, encoding='utf-8') == "test":
         pre_topN = 6000
         post_topN = 300
         threshold = 0.7
-    
+
     # rpn_cls_prob ( , , , 2*num) --cut--> scores( , , , num)
     # scores:
     # probs of foreground @anchor0
