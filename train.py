@@ -35,9 +35,8 @@ def train():
     net = Network(num_classes=imdb.num_classes)
 
     # create session
-    tfconfig = tf.ConfigProto(allow_soft_placement=True)
     gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
-    tfconfig.gpu_options = gpu_options
+    tfconfig = tf.ConfigProto(gpu_options=gpu_options)
     sess = tf.Session(config=tfconfig)
 
     with sess.graph.as_default():
