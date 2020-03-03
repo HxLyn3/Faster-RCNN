@@ -130,4 +130,5 @@ def snapshot(net, sess, saver, it):
     print("Wrote snapshot to: {:s}".format(filename))
 
 if __name__ == "__main__":
-    train()
+    with tf.device("/gpu:0"):
+        train()
