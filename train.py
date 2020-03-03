@@ -105,7 +105,7 @@ def train():
                 print("iter: %d / 40000, total loss: %.6f\n >>> rpn_cls_loss: %.6f\n"\
                     " >>> rpn_bbox_loss: %.6f\n >>> cls_loss: %.6f\n >>> bbox_loss: %.6f\n" % \
                     (snapshot_iter, total_loss, rpn_cls_loss, rpn_bbox_loss, cls_loss, bbox_loss))
-                print("speed: {:.3f}s/iter".format((t1-t0)/snapshot_iter))
+                print("speed: {:.3f}s/iter".format((t1-init_time)/snapshot_iter))
 
             # snapshot (store a ckpt)
             if snapshot_iter % 5000 == 0:
