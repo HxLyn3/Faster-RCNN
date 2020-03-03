@@ -35,10 +35,6 @@ def proposal(rpn_cls_prob, rpn_bbox_pred, imgInfo, mode, feat_stride, anchors, n
         num: num of anchors at a pos
     """
 
-    pre_topN = 0
-    post_topN = 0
-    threshold = 0
-
     if mode == "train":
         pre_topN = 12000    # number of top scoring boxes to keep before applying nms
         post_topN = 2000    # number of top scoring boxes to keep after applying nms
@@ -314,8 +310,8 @@ def rois_sample(all_rois, all_scores, boxes, fg_rois_per_image, rois_per_image, 
     # select foreground rois
     foreground_idx = np.where(iou_max_to_rois >= 0.5)[0]
     # select background rois
-    # background_idx = np.where((iou_max_to_rois < 0.5) & (iou_max_to_rois >= 0.1))[0]
-    background_idx = np.where(iou_max_to_rois < 0.5)[0]
+    background_idx = np.where((iou_max_to_rois < 0.5) & (iou_max_to_rois >= 0.1))[0]
+    # background_idx = np.where(iou_max_to_rois < 0.5)[0]
 
     # fix number of rois
     if foreground_idx.size > 0 and background_idx.size > 0:
@@ -336,8 +332,8 @@ def rois_sample(all_rois, all_scores, boxes, fg_rois_per_image, rois_per_image, 
         to_replace = background_idx.size < rois_per_image
         background_idx = np.random.choice(background_idx, size=int(rois_per_image), replace=to_replace)
         fg_rois_per_image = 0
-    # else:
-    #     raise Exception()
+    else:
+        raise Exception()
 
     # indices of selected rois
     keep_idx = np.append(foreground_idx, background_idx)

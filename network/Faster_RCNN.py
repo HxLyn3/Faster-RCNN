@@ -186,7 +186,7 @@ class Network():
             self.anchor_num_total = n_anchors
         
         # RPN layer
-        rpn = slim.conv2d(net, 512, [3, 3], trainable=isTraining, weights_initializer=initializer, scope="rpn_conv")
+        rpn = slim.conv2d(net, 512, [3, 3], trainable=isTraining, weights_initializer=initializer, scope="rpn_conv/3x3")
         self.summaries_act.append(rpn)
 
         # rpn_cls_score:
@@ -221,7 +221,8 @@ class Network():
             #                      ------------
             rpn_cls_score_caffe = tf.transpose(rpn_cls_score, [0, 3, 1, 2])
             # force to channel 2
-            reshaped = tf.reshape(rpn_cls_score_caffe, [self.batch_size, 2, -1, rpn_cls_score_shape[2]])
+            reshaped = tf.reshape(rpn_cls_score_caffe, tf.concat(\
+                axis=0, values=[[self.batch_size], [2, -1], [rpn_cls_score_shape[2]]]))
             rpn_cls_score_reshape = tf.transpose(reshaped, [0, 2, 3, 1])
 
         # softmax
@@ -235,7 +236,8 @@ class Network():
         with tf.variable_scope("rpn_cls_prob"):
             rpn_cls_prob_caffe = tf.transpose(rpn_cls_prob_reshape, [0, 3, 1, 2])
             # force to channel 2*a
-            reshaped = tf.reshape(rpn_cls_prob_caffe, [self.batch_size, 2*self.anchor_num, -1, rpn_cls_prob_shape[2]])
+            reshaped = tf.reshape(rpn_cls_prob_caffe, tf.concat(\
+                axis=0, values=[[self.batch_size], [2*self.anchor_num, -1], [rpn_cls_prob_shape[2]]]))
             rpn_cls_prob = tf.transpose(reshaped, [0, 2, 3, 1])
 
         # bounding box prediction
@@ -353,9 +355,9 @@ class Network():
             pre_pool_size  = roi_pooling_size*2
             # cut out image of ROI
             crops = tf.image.crop_and_resize(net, bboxes_, tf.to_int32(batch_idxs), [pre_pool_size, pre_pool_size], name="crops")
-            # pool5
-            pool5 = slim.max_pool2d(crops, [2, 2], padding='SAME')
 
+        # pool5
+        pool5 = slim.max_pool2d(crops, [2, 2], padding='SAME')
         # [rois_num, roi_height, roi_width, channels_num] --> [rois_num, None]
         pool5_flat = slim.flatten(pool5, scope='flatten')
 
@@ -372,7 +374,7 @@ class Network():
 
         # scores
         cls_score = slim.fully_connected(full7, self.num_classes, \
-            weights_initializer=initializer, trainable=isTraining, activation_fn=None, scope='class_score')
+            weights_initializer=initializer, trainable=isTraining, activation_fn=None, scope='cls_score')
         # predictions
         cls_prob = tf.nn.softmax(cls_score, name='cls_prob')
         bbox_prediction = slim.fully_connected(full7, self.num_classes*4, \
