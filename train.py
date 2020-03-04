@@ -83,8 +83,8 @@ def train():
         snapshot_iter = 0
         init_time = time.time()
 
-        # train 40000 times
-        while snapshot_iter < 40000:
+        # train 100000 times
+        while snapshot_iter < 100000:
             # reduce learning rate when trained 30000 times
             if snapshot_iter == 30000:
                 sess.run(tf.assign(lr, 0.0001))
