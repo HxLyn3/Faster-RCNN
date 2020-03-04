@@ -102,8 +102,8 @@ def train():
 
             # display train info
             if snapshot_iter % 10 == 0:
-                print("iter: %d / 40000, total loss: %.6f\n >>> rpn_cls_loss: %.6f\n"\
-                    " >>> rpn_bbox_loss: %.6f\n >>> cls_loss: %.6f\n >>> bbox_loss: %.6f" % \
+                print("iter: %d / 100000, total loss: %.6f\n>>> rpn_cls_loss: %.6f\n"\
+                    ">>> rpn_bbox_loss: %.6f\n>>> cls_loss: %.6f\n>>> bbox_loss: %.6f" % \
                     (snapshot_iter, total_loss, rpn_cls_loss, rpn_bbox_loss, cls_loss, bbox_loss))
                 print("speed: {:.3f}s/iter\n".format((t1-init_time)/snapshot_iter))
 
