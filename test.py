@@ -11,6 +11,8 @@ from data.pascal_voc import pascal_voc
 from network.Faster_RCNN import Network
 from network.lib.rpn.roi import bbox_plus_delta, bbox_amend
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+
 def test():
     # datasets
     print("Reading images...")
