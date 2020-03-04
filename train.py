@@ -6,11 +6,12 @@ import tensorflow as tf
 from tensorflow.python import pywrap_tensorflow
 
 # my lib
-from data.imdb import imdb as imdb2
 from data import roidb as rdl_roidb
 from data.pascal_voc import pascal_voc
 from network.Faster_RCNN import Network
 from data.roi_data_layer import RoIDataLayer
+
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 def get_training_roidb(imdb):
     """Returns a roidb (Region of Interest database) for use in training."""
@@ -35,7 +36,7 @@ def train():
     net = Network(num_classes=imdb.num_classes)
 
     # create session
-    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.9)
     tfconfig = tf.ConfigProto(gpu_options=gpu_options)
     sess = tf.Session(config=tfconfig)
 

@@ -379,7 +379,7 @@ class Network():
         cls_prob = tf.nn.softmax(cls_score, name='cls_prob')
         bbox_prediction = slim.fully_connected(full7, self.num_classes*4, \
             weights_initializer=initializer_bbox, trainable=isTraining, activation_fn=None, scope='bbox_pred')
-        
+
         return cls_score, cls_prob, bbox_prediction
 
     # ····································································································
@@ -528,7 +528,7 @@ class Network():
         cls_score, cls_prob, bbox_pred, rois = sess.run(
             [self.predictions["cls_score"], self.predictions["cls_prob"],\
             self.predictions["bbox_pred"], self.predictions["rois"]], feed_dict=feed_dict)
-        return cls_score, cls_score, bbox_pred, rois
+        return cls_score, cls_prob, bbox_pred, rois
 
     def get_summary(self, sess, blobs):
         """ get summary """
