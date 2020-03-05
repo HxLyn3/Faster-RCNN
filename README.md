@@ -1,5 +1,5 @@
 # Faster RCNN
-- **Author:** LomHoyum
+- **Author:** Lom-Hoyum
 - **Data:** 03/05/2020
 - **Version:** 1.0.0
 - **Brief:** A Faster RCNN complemented with TensorFlow.
