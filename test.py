@@ -59,7 +59,7 @@ def test():
                 keep = np.where(all_boxes[j][i][:, -1] >= image_thresh)[0]
                 all_boxes[j][i] = all_boxes[keep, :]
 
-        print("Tested %d images"%i)
+        print("Tested %d / %d images" % (i+1, len(num_imgs)))
 
     det_file = "./evalution/detections.pkl"
     with open(det_file, 'wb') as f:
