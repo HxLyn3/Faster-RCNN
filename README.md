@@ -4,22 +4,17 @@
 - **Version:** 1.0.0
 - **Brief:** A Faster RCNN complemented with TensorFlow.
 
----
-
 ## Test Environment
 - **OS Environ**
-`Ubuntu 16.04.5 `
-`GPU: TITAN X (Pascal)`
-`Anaconda 4.8.2`
-`CUDA 10.2`
+`Ubuntu 16.04.5 `  
+`GPU: TITAN X (Pascal)`  
+`Anaconda 4.8.2`  
+`CUDA 10.2`  
 - **Dependencies**
-`python 3.6.10`
-`tensorflow-gpu 1.15.0`
-`numpy 1.18.1`
-`Pillow 5.3.0`
-
-
----
+`python 3.6.10`  
+`tensorflow-gpu 1.15.0`  
+`numpy 1.18.1`  
+`Pillow 5.3.0`  
 
 ## Usage
 1. Download `VOC2007` dataset with following instructions.
@@ -72,7 +67,5 @@
     ```Shell
     python3 test.py
     ```
-    
----
 
 ## Results
