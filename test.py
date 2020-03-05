@@ -59,6 +59,8 @@ def test():
                 keep = np.where(all_boxes[j][i][:, -1] >= image_thresh)[0]
                 all_boxes[j][i] = all_boxes[keep, :]
 
+        print("Tested %d images"%i)
+
     det_file = "./evalution/detections.pkl"
     with open(det_file, 'wb') as f:
         pickle.dump(all_boxes, f, pickle.HIGHEST_PROTOCOL)
