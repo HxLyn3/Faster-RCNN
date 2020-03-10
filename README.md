@@ -81,4 +81,5 @@
 |cat|0.7687|sofa|0.6431|
 |chair|0.4441|train|0.6885|
 |cow|0.7383|tvmonitor|0.5875|  
+
 Mean AP = 0.6412
