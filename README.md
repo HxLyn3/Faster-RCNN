@@ -69,3 +69,16 @@
     ```
 
 ## Results
+|class|AP|class|AP|
+|--| --|--|--|
+|aeroplane|0.6974|diningtable|0.6314|
+|bicycle|0.7100|dog|0.7518|
+|bird|0.5914|horse|0.8008|
+|boat|0.5430|motorbike|0.6987|
+|bottle|0.4067|person|0.7025|
+|bus|0.7478|pottedplant|0.3567|
+|car|0.7160|sheep|0.5993|
+|cat|0.7687|sofa|0.6431|
+|chair|0.4441|train|0.6885|
+|cow|0.7383|tvmonitor|0.5875|  
+Mean AP = 0.6412
