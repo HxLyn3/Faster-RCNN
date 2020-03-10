@@ -125,7 +125,7 @@ def get_variables_in_ckpt(filename):
 
 def snapshot(net, sess, saver, it):
     """ take a snapshot for model """
-    # sotre the model snapshot
+    # store the model snapshot
     filename = './model/vgg16_faster_rcnn_iter_{:d}'.format(it) + '.ckpt'
     saver.save(sess, filename)
     print("Wrote snapshot to: {:s}".format(filename))
