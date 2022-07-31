@@ -1,5 +1,5 @@
 # Faster RCNN
-- **Author:** Lin Haoxin
+- **Author:** Haoxin Lin
 - **Data:** 03/05/2020
 - **Version:** 1.0.0
 - **Brief:** A Faster RCNN complemented with TensorFlow.
